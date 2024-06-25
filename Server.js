@@ -34,7 +34,10 @@ app.post('/recipes', async (req, res) => {
   await newRecipe.save();
   res.json(newRecipe);
 });
-
+app.get('/recipes/:id', async (req, res) => {
+  const updatedRecipe = await Recipe.find({id: req.params.id});
+  res.json(updatedRecipe);
+});
 app.put('/recipes/:id', async (req, res) => {
   const updatedRecipe = await Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true });
   res.json(updatedRecipe);
